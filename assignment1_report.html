@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>assignment1_report.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="assignment-1-report">Assignment 1 Report</h1>
+<h2 id="movie-reviews-sentiment-analysis-using-natural-language-processing-nlp">Movie Reviews Sentiment Analysis Using Natural Language Processing (NLP)</h2>
+<p><strong>Course:</strong> Natural Language Processing<br>
+<strong>Assignment:</strong> 1 – Dataset Exploration and Text Preprocessing<br>
+<strong>Project Topic:</strong> Movie Reviews Sentiment Analysis<br>
+<strong>Dataset:</strong> IMDB Movie Reviews Dataset<br>
+<strong>Team Members:</strong> Add your team members' names here<br>
+<strong>Submission Date:</strong> 8 November 2026</p>
+<hr>
+<h1 id="1-introduction">1. Introduction</h1>
+<p>Natural Language Processing (NLP) is a field of Artificial Intelligence that enables computers to understand and process human language.</p>
+<p>The purpose of this project is to prepare movie reviews for sentiment analysis. Sentiment analysis identifies whether a review expresses a positive or negative opinion.</p>
+<p>In this assignment, we explore a movie review dataset, examine its text characteristics, compare tokenization methods, and implement a reusable text-cleaning pipeline.</p>
+<h1 id="2-dataset-and-environment">2. Dataset and Environment</h1>
+<h2 id="21-dataset-information">2.1 Dataset Information</h2>
+<p>We used the IMDB Movie Reviews Dataset.</p>
+<ul>
+<li>Dataset source: https://zenodo.org/records/7928582</li>
+<li>Total documents: 50,000</li>
+<li>Positive reviews: 25,000</li>
+<li>Negative reviews: 25,000</li>
+<li>Columns: review and sentiment</li>
+<li>File format: CSV</li>
+<li>Licence: Not specified in the referenced Zenodo record.</li>
+</ul>
+<p>The dataset contains movie reviews labelled as positive or negative. The raw dataset is stored locally and is not included in the Git repository.</p>
+<h2 id="22-environment-and-libraries">2.2 Environment and Libraries</h2>
+<p>The project was developed using Python in Visual Studio Code.</p>
+<p>Libraries used:</p>
+<ul>
+<li>Pandas: Loading and processing CSV data.</li>
+<li>NLTK: Porter stemming.</li>
+<li>re: Regular expressions and tokenization.</li>
+<li>unicodedata: Unicode normalization.</li>
+<li>pathlib: Managing file paths.</li>
+</ul>
+<p>Dependencies are listed in <code>requirements.txt</code>.</p>
+<h2 id="23-dataset-loading">2.3 Dataset Loading</h2>
+<p>The dataset was loaded using Pandas. The loading script checks whether the raw dataset exists, reads the CSV file, standardizes column names, removes missing values, and saves the prepared dataset.</p>
+<p>The script is available at:</p>
+<p><code>src/download_dataset.py</code></p>
+<h1 id="3-dataset-exploration">3. Dataset Exploration</h1>
+<h2 id="31-basic-statistics">3.1 Basic Statistics</h2>
+<p>The following statistics were calculated:</p>
+<table>
+<thead>
+<tr>
+<th>Measurement</th>
+<th style="text-align:right">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Total documents</td>
+<td style="text-align:right">50,000</td>
+</tr>
+<tr>
+<td>Average review length</td>
+<td style="text-align:right">231.16 words</td>
+</tr>
+<tr>
+<td>Shortest review</td>
+<td style="text-align:right">4 words</td>
+</tr>
+<tr>
+<td>Longest review</td>
+<td style="text-align:right">2,470 words</td>
+</tr>
+<tr>
+<td>Positive reviews</td>
+<td style="text-align:right">25,000</td>
+</tr>
+<tr>
+<td>Negative reviews</td>
+<td style="text-align:right">25,000</td>
+</tr>
+</tbody>
+</table>
+<h2 id="32-target-distribution">3.2 Target Distribution</h2>
+<p>The dataset has a balanced sentiment distribution.</p>
+<table>
+<thead>
+<tr>
+<th>Sentiment</th>
+<th style="text-align:right">Number of Reviews</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Positive</td>
+<td style="text-align:right">25,000</td>
+</tr>
+<tr>
+<td>Negative</td>
+<td style="text-align:right">25,000</td>
+</tr>
+</tbody>
+</table>
+<p>Each class represents 50% of the dataset. This balance is useful because neither sentiment class dominates the dataset.</p>
+<h2 id="33-vocabulary-analysis">3.3 Vocabulary Analysis</h2>
+<p>Vocabulary analysis was performed on the first 1,000 reviews.</p>
+<table>
+<thead>
+<tr>
+<th>Measurement</th>
+<th style="text-align:right">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sample documents</td>
+<td style="text-align:right">1,000</td>
+</tr>
+<tr>
+<td>Total tokens</td>
+<td style="text-align:right">239,546</td>
+</tr>
+<tr>
+<td>Unique words (types)</td>
+<td style="text-align:right">17,960</td>
+</tr>
+<tr>
+<td>Type-token ratio</td>
+<td style="text-align:right">0.075</td>
+</tr>
+</tbody>
+</table>
+<p>The type-token ratio was calculated by dividing the number of unique words by the total number of tokens.</p>
+<p>A low ratio indicates that many words occur repeatedly in the reviews.</p>
+<h2 id="34-zipfs-law-and-long-tail-distribution">3.4 Zipf's Law and Long-Tail Distribution</h2>
+<p>The most frequent words include:</p>
+<table>
+<thead>
+<tr>
+<th>Word</th>
+<th style="text-align:right">Frequency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>the</td>
+<td style="text-align:right">13,431</td>
+</tr>
+<tr>
+<td>and</td>
+<td style="text-align:right">6,474</td>
+</tr>
+<tr>
+<td>a</td>
+<td style="text-align:right">6,385</td>
+</tr>
+<tr>
+<td>of</td>
+<td style="text-align:right">5,911</td>
+</tr>
+<tr>
+<td>to</td>
+<td style="text-align:right">5,319</td>
+</tr>
+<tr>
+<td>br</td>
+<td style="text-align:right">4,124</td>
+</tr>
+<tr>
+<td>is</td>
+<td style="text-align:right">4,069</td>
+</tr>
+<tr>
+<td>in</td>
+<td style="text-align:right">3,727</td>
+</tr>
+<tr>
+<td>it</td>
+<td style="text-align:right">3,668</td>
+</tr>
+</tbody>
+</table>
+<p>The results show that a small number of words occur very frequently, while many other words occur less frequently.</p>
+<p>This pattern is related to Zipf's Law and the long-tail distribution of natural language.</p>
+<p>The word <code>br</code> appears because HTML line-break tags such as <code>&lt;br /&gt;</code> are present in the original reviews.</p>
+<h1 id="4-tokenization-and-regular-expressions">4. Tokenization and Regular Expressions</h1>
+<h2 id="41-tokenization-methods">4.1 Tokenization Methods</h2>
+<p>Two tokenization methods were tested on the first 1,000 reviews.</p>
+<p><strong>Method 1: Whitespace Tokenization</strong></p>
+<p>Whitespace tokenization uses the <code>split()</code> method to divide text wherever whitespace occurs.</p>
+<p><strong>Method 2: Regex-Based Tokenization</strong></p>
+<p>Regex tokenization uses the following pattern:</p>
+<p><code>\b\w+\b</code></p>
+<p>It extracts individual words and numbers based on word boundaries.</p>
+<h2 id="42-tokenization-comparison">4.2 Tokenization Comparison</h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th style="text-align:right">Total Tokens</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Whitespace tokenization</td>
+<td style="text-align:right">231,265</td>
+</tr>
+<tr>
+<td>Regex tokenization</td>
+<td style="text-align:right">239,546</td>
+</tr>
+</tbody>
+</table>
+<p>Regex tokenization produced more tokens because it separates some punctuation-connected words and contractions.</p>
+<p>For example:</p>
+<ul>
+<li>Whitespace: <code>you'll</code></li>
+<li>Regex: <code>you</code>, <code>ll</code></li>
+</ul>
+<p>Similarly, the hyphenated word <code>light-hearted</code> becomes <code>light</code> and <code>hearted</code>.</p>
+<h2 id="43-useful-regular-expressions">4.3 Useful Regular Expressions</h2>
+<p>Three regular expressions were examined.</p>
+<p><strong>1. HTML Tag Removal</strong></p>
+<p>Pattern:</p>
+<p><code>&lt;[^&gt;]+&gt;</code></p>
+<p>Purpose: Detects HTML tags such as <code>&lt;br /&gt;</code> so they can be removed from reviews.</p>
+<p><strong>2. Punctuation and Special Character Detection</strong></p>
+<p>Pattern:</p>
+<p><code>[^a-zA-Z0-9\s]</code></p>
+<p>Purpose: Detects characters that are not English letters, numbers, or whitespace.</p>
+<p><strong>3. Word Extraction</strong></p>
+<p>Pattern:</p>
+<p><code>\b\w+\b</code></p>
+<p>Purpose: Extracts individual words and numbers from text.</p>
+<h2 id="44-dataset-specific-tokenization-challenges">4.4 Dataset-Specific Tokenization Challenges</h2>
+<p>Two important challenges were identified:</p>
+<ol>
+<li>HTML tags: Reviews contain HTML tags such as <code>&lt;br /&gt;&lt;br /&gt;</code>, which can create unwanted tokens if they are not removed.</li>
+<li>Contractions and hyphenated words: Words such as <code>you'll</code> and <code>light-hearted</code> may be treated differently by different tokenization methods.</li>
+</ol>
+<p>These challenges show why text preprocessing is important before sentiment analysis.</p>
+<h1 id="5-text-cleaning-pipeline">5. Text Cleaning Pipeline</h1>
+<p>A reusable text-cleaning function was implemented in:</p>
+<p><code>src/clean_text.py</code></p>
+<p>The pipeline contains the following steps:</p>
+<p><strong>1. Unicode Normalization</strong></p>
+<p>NFKC normalization is applied to standardize Unicode characters.</p>
+<p><strong>2. HTML Tag Removal</strong></p>
+<p>HTML tags are removed using regular expressions.</p>
+<p><strong>3. Lowercase Conversion</strong></p>
+<p>All text is converted to lowercase so that words with different capitalization are treated consistently.</p>
+<p><strong>4. Tokenization</strong></p>
+<p>Words and numbers are extracted using a regular expression.</p>
+<p><strong>5. Stopword Removal</strong></p>
+<p>Common words that provide limited information are removed using a manually defined stopword list.</p>
+<p>Negation words such as <code>not</code>, <code>no</code>, and <code>never</code> are deliberately preserved because they can change the meaning of a movie review.</p>
+<p><strong>6. Stemming</strong></p>
+<p>Porter Stemmer from NLTK is used to reduce words to their stems.</p>
+<p>For example, words such as <code>watching</code> and <code>watched</code> may be reduced to a common stem.</p>
+<h2 id="51-cleaning-function">5.1 Cleaning Function</h2>
+<p>The cleaning function performs all preprocessing operations and returns cleaned text as a single string.</p>
+<p>It is reusable because the same function can be applied to every review in the dataset.</p>
+<h2 id="52-vocabulary-before-and-after-cleaning">5.2 Vocabulary Before and After Cleaning</h2>
+<p>Vocabulary was measured across the full dataset before and after cleaning.</p>
+<table>
+<thead>
+<tr>
+<th>Measurement</th>
+<th style="text-align:right">Vocabulary Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Before cleaning</td>
+<td style="text-align:right">101,944</td>
+</tr>
+<tr>
+<td>After cleaning</td>
+<td style="text-align:right">70,331</td>
+</tr>
+<tr>
+<td>Reduction</td>
+<td style="text-align:right">31,613</td>
+</tr>
+</tbody>
+</table>
+<p>The vocabulary decreased by approximately 31%.</p>
+<p>This reduction occurred because HTML tags, punctuation, common stopwords, and different word forms were handled during preprocessing.</p>
+<h2 id="53-example-of-cleaning">5.3 Example of Cleaning</h2>
+<p><strong>Original review:</strong></p>
+<p><code>One of the other reviewers has mentioned that after watching just 1 Oz episode you'll be hooked.</code></p>
+<p><strong>Cleaned review:</strong></p>
+<p><code>one other review mention after watch just 1 oz episod ll hook</code></p>
+<p>The cleaned text contains lowercase tokens, fewer unnecessary words, and stemmed word forms.</p>
+<h1 id="6-output-and-reproducibility">6. Output and Reproducibility</h1>
+<p>The cleaned dataset was successfully saved as:</p>
+<p><code>data/processed/cleaned_reviews.csv</code></p>
+<p>The output contains the original review, sentiment label, and an additional <code>cleaned_review</code> column.</p>
+<p>The project uses separate scripts for dataset preparation and text cleaning.</p>
+<p>To reproduce the process:</p>
+<ol>
+<li>Install Python.</li>
+<li>Create and activate a virtual environment.</li>
+<li>Install dependencies using <code>pip install -r requirements.txt</code>.</li>
+<li>Place the original dataset in <code>data/raw/</code>.</li>
+<li>Run <code>python src/download_dataset.py</code>.</li>
+<li>Run <code>python src/clean_text.py</code>.</li>
+</ol>
+<p>The scripts generate the prepared and cleaned datasets automatically.</p>
+<h1 id="7-conclusion">7. Conclusion</h1>
+<p>In this assignment, we explored the IMDB movie review dataset and implemented a complete text preprocessing pipeline.</p>
+<p>We examined dataset statistics, sentiment distribution, vocabulary size, and tokenization methods. We also identified common text problems such as HTML tags, contractions, and hyphenated words.</p>
+<p>The cleaning pipeline applies Unicode normalization, HTML removal, lowercase conversion, tokenization, stopword removal, and Porter stemming.</p>
+<p>The vocabulary decreased from 101,944 to 70,331 unique words after cleaning.</p>
+<p>The cleaned dataset is now prepared for the next phase of the sentiment analysis project.</p>
+<h1 id="8-contribution-statement">8. Contribution Statement</h1>
+<p><strong>Team Members and Contributions:</strong></p>
+<ul>
+<li>Member 1: [Add name and actual contribution]</li>
+<li>Member 2: [Add name and actual contribution]</li>
+<li>Member 3: [Add name and actual contribution]</li>
+</ul>
+<p>All contributions should reflect the actual work completed by each team member.</p>
+
+</body>
+</html>
